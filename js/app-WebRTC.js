@@ -47,6 +47,7 @@ var AppWebTC = (function () {
 				getPeerConnection();
 			}
 			getMediaStream(createAnswer);
+			$("html, body").animate({ scrollTop: $(document).height() }, 1000);
 		},
 
 		createOffer = function (stream) {
@@ -62,6 +63,8 @@ var AppWebTC = (function () {
 			}
 			getMediaStream(createOffer);
 			$("#callBtn").hide();
+			CARReplyWaiting = true;
+			$("html, body").animate({ scrollTop: $(document).height() }, 1000);
 		},
 
 		onConnection = function (desc) {
@@ -109,7 +112,7 @@ var AppWebTC = (function () {
 			console.log("Inside gotIceCandidate ..");
 			if (event.candidate) {
 				signalData["ice"].push(event.candidate);
-				var toSend = "CAREsignalData: " + JSON.stringify(signalData);
+				var toSend = "CAREsignalData"+CAREmyID + ":     "+JSON.stringify(signalData);
 				console.log("sent signalData ..");
 				sendMessage(toSend);
 			}
@@ -173,11 +176,17 @@ var AppWebTC = (function () {
 			remoteVideo.srcObject = event.stream;
 		},
 		
+		sendPing = function () {
+			console.log("Inside ping ..");
+			sendMessage("ECHO: Any one there ?");
+		},
+		
 		init = function () {
 			getPeerConnection();
 			$("#callBtn").on("click", initiateOffer);
 			$("#joinBtn").on("click", joinSession);
 			$("#hangBtn").on("click", closeCall);
+			$("#anyoneThere").on("click", sendPing);
 		}
 
 	return {
