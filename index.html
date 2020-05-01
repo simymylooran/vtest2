@@ -18,25 +18,26 @@
             }
             li {
                 list-style: none;
-                background: #fff;
+                background: #DCDCDC;
 				margin: 0 3em 0 4em;
-				border-radius: 8px;
+				border-radius: 4px;
 				padding: 0em;
 				margin-top: 3px;
 				margin-left: -2em;
 				margin-right: 2em;
-				-webkit-border-radius: 8px;
-				-khtml-border-radius: 8px;
-				-moz-border-radius: 8px;
+				-webkit-border-radius: 4px;
+				-khtml-border-radius: 4px;
+				-moz-border-radius: 4px;
             }
             ul {
-                background: #eef;
+                background: #ffffff;
             }
             .disconnected {
                 background-color: #f88;
             }
             input {
-                width: 200px;
+                width: 300px;
+				border-style: none;
             }
 			button {
                 width: 100px;
@@ -65,52 +66,51 @@
 			
 			
 </style>
-	<body>
+	<body style="background-color: #2F4F4F">
 	
+	<div class="container" style="background-color: #FFFFFF">
+		
+			<div class=".float-child1" id="tWindow">
 			
-			
-		<div class="float-child1"> 
-			<div class="container">	
-				 
 				<label for="name">Appointment ID</label>
 				<input id="roomid" type="text" width="40" value="111-222-333"/><br/>
-				<label for="name">Name</label>
-				<input id="name" name="name" type="text" width="40" value="chrome"/> <br/>
+				<label for="name">Your Name</label>
+				<input id="name" name="name" type="text" width="40" value="" placeholder="Your name here .."/> <br/>
 				
-				<button id="start" type="button" value="Start Chat"/> Start Chat </button>
-				<span class='label'>Status</span> <div id="status" class="disconnected">Not started</div>
-				<div id="messages" >
-				<ul id="messagelist"><br/>
-				</ul></div>
-				<input id="message" name="message" type="text" placeholder="Type your message here .." width="200"/>
-				<button type="button" id="send" value="Send">Send</button>
+				<button id="start" type="button" value="Start Chat"> Start Chat </button>
+				<span class='label'>Status</span> 
+				<div id="status" class="disconnected">Not started</div>
+				<div id="messages" ><ul id="messagelist"></ul>	</div>
+				<input id="message" name="message" type="text" style="Height: 40px" placeholder="Type your message here .." width="200"/>
+				
+			
 			</div>
-		</div>
+		    
+		    <div class=".float-child1" id="vWindow">
+					<button id="send" type="button" class="btn btn-success btn-lg ">
+					  <span class="glyphicon glyphicon-send" aria-hidden="true"></span> Text
+					</button>
+					<button id="anyoneThere" type="button" class="btn btn-success btn-lg ">
+					  <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Ping
+					</button>
+					<button id="callBtn" type="button" class="btn btn-success btn-lg ">
+					  <span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> Init
+					</button>
+					<button id="joinBtn" type="button" class="btn btn-info btn-lg ">
+					  <span class="glyphicon glyphicon-random" aria-hidden="true"></span> Join
+					</button>
+					<button id="hangBtn" type="button" class="btn btn-danger btn-lg ">
+					  <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
+					</button>
+					<hr/>
+					<video id="remoteVideo" width="100%" autoplay></video>
+					<video id="localVideo" style="float: left;" width="20%"  muted autoplay ></video>
+			 <div>
 		
-		<div class="float-container">
-		<div class="float-child1">
-			<div class="container">			
-				<div class="jumbotron">
-					<div id="allVideo">
-						<video id="remoteVideo" width="100%" autoplay></video>
-						<video id="localVideo" width="30%"  muted autoplay ></video>
-					</div>
-					<div class="modal-footer-but">
-							<button id="callBtn" type="button" class="btn btn-success btn-lg ">
-							  <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Video
-							</button>
-							<button id="joinBtn" type="button" class="btn btn-info btn-lg ">
-							  <span class="glyphicon glyphicon-random" aria-hidden="true"></span> Join
-							</button>
-							<button id="hangBtn" type="button" class="btn btn-danger btn-lg ">
-								<span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
-							</button>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 
-	</div>
+
+	
 		<script src="js/mqttws31.min.js"></script>
 		<script src="js/jquery-2.2.3.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
