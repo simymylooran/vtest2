@@ -69,7 +69,5 @@ body {
 }
 
 #localVideo{
-  position:absolute;
-  bottom:8%;
   display:none;
 }
