@@ -1,0 +1,10 @@
+Credits
+--------
+
+JQuery - MIT License - https://jquery.org/license/
+bootstrap - MIT License - https://github.com/twbs/bootstrap/blob/master/LICENSE
+Paho.mqtt.javascript - EPL License - https://github.com/eclipse/paho.mqtt.javascript
+serverless-videochat - Apache 2.0 - https://github.com/namaggarwal/serverless-videochat/blob/master/LICENSE
+
+
+
