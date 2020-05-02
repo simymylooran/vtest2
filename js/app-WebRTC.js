@@ -52,6 +52,7 @@ var AppWebTC = (function () {
 			$("html, body").animate({ scrollTop: $(document).height() }, 1000);
 			console.log("Stopping ring tone - 2");
 			CARRongaudio.pause();CARRongaudio.currentTime = 0;
+			setTimeout(function(){ console.log("Stopping ring tone - 3"); CARRongaudio.pause();CARRongaudio.currentTime = 0;}, 3000);
 		},
 
 		createOffer = function (stream) {
