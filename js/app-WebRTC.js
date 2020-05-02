@@ -11,7 +11,9 @@ var AppWebTC = (function () {
 		localStream = null,
 		remoteVideo = document.getElementById("remoteVideo"),
 	
-
+		toSend = "",
+		delayTimer = null,
+		
 
 
 		getPeerConnection = function () {
@@ -22,7 +24,7 @@ var AppWebTC = (function () {
 			peerConnection.oniceconnectionstatechange = onConnectionStatusChange;
 			peerConnection.onsignalingstatechange = (event) => { 
 				console.log("Signaling change"); 
-				//console.log(event);
+				console.log(event);
 			}
 			console.log("Returned from getPeerConnection");
 		},
@@ -48,16 +50,24 @@ var AppWebTC = (function () {
 			}
 			getMediaStream(createAnswer);
 			$("html, body").animate({ scrollTop: $(document).height() }, 1000);
+			console.log("Stopping ring tone - 2");
+			CARRongaudio.pause();CARRongaudio.currentTime = 0;
 		},
 
 		createOffer = function (stream) {
 			localVideo.srcObject = stream;
 			peerConnection.addStream(stream);
 			peerConnection.createOffer(onConnection, handleError);
+			console.log("Playing ring tone-1");
+			CARRongaudio.play();
 		},
 
 		initiateOffer = function () {
 			console.log("Inside initiateOffer ..");
+			if(!confirm("Proceed only if other person is online\n If you are not sure, cancel this and try pressing 'ping' ..")) {
+				return;
+			}
+			
 			if (peerConnection == null) {
 				getPeerConnection();
 			}
@@ -106,13 +116,15 @@ var AppWebTC = (function () {
 			signalData["desc"] = desc;
 			console.log("inside sendReply ..");
 		},
-
+		
+		
 
 		gotIceCandidate = function (event) {
 			console.log("Inside gotIceCandidate ..");
 			if (event.candidate) {
 				signalData["ice"].push(event.candidate);
-				var toSend = "CAREsignalData"+CAREmyID + ":     "+JSON.stringify(signalData);
+			} else {
+				toSend = "CAREsignalData"+CAREmyID + ":     "+JSON.stringify(signalData);
 				console.log("sent signalData ..");
 				sendMessage(toSend);
 			}
