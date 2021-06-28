@@ -121,7 +121,7 @@
 		$("#send").prop('disabled', true);
 		
 		$('#start').click(function(){
-			client = new Paho.MQTT.Client("test.mosquitto.org", 8081, cid );
+			client = new Paho.MQTT.Client("demo.pas-care.com", 8081, cid );
 			client.onConnect = onConnect;
 			client.onMessageArrived = onMessageArrived;
 			client.onConnectionLost = onConnectionLost;
